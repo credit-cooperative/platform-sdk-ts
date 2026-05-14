@@ -31,14 +31,14 @@ jobs:
           fetch-depth: 0
           ref: main
 
+      # Node 24 ships with npm 11.x bundled, which satisfies Trusted Publishing's
+      # >= 11.5.1 requirement without needing an in-place npm self-upgrade
+      # (the self-upgrade was crashing with "Cannot find module 'promise-retry'").
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
-
-      # Trusted Publishing requires npm >= 11.5.1. Node 22 ships an older npm.
-      - run: npm install -g npm@latest
 
       - name: Configure git author
         run: |
