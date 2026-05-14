@@ -9,7 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
     steps:
       - uses: actions/checkout@v4
@@ -48,3 +48,14 @@ jobs:
       - name: Publish to npm
         working-directory: packages/sdk
         run: npm publish --tag "${{ steps.disttag.outputs.tag }}" --provenance
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prerelease_flag=""
+          case "$GITHUB_REF_NAME" in *-*) prerelease_flag="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes \
+            $prerelease_flag
