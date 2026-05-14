@@ -1,0 +1,47 @@
+{
+  "name": "@credit-cooperative/platform-sdk",
+  "version": "3.0.0-alpha.0",
+  "description": "Official TypeScript SDK for the Credit Cooperative platform API.",
+  "license": "MIT",
+  "author": "Credit Cooperative",
+  "homepage": "https://github.com/credit-cooperative/platform-sdk-ts#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/credit-cooperative/platform-sdk-ts.git",
+    "directory": "packages/sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/credit-cooperative/platform-sdk-ts/issues"
+  },
+  "keywords": ["creditcoop", "credit-cooperative", "sdk", "defi", "openapi"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "generate": "openapi-ts",
+    "prepublishOnly": "npm run typecheck && npm run build"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.97.1",
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  }
+}

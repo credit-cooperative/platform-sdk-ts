@@ -1,0 +1,16 @@
+{
+  "name": "platform-sdk-ts-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepo for the Credit Cooperative TypeScript SDK and its examples.",
+  "license": "MIT",
+  "workspaces": ["packages/*", "examples/*"],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run build -w @credit-cooperative/platform-sdk",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "generate": "npm run generate -w @credit-cooperative/platform-sdk"
+  }
+}
