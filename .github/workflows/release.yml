@@ -70,7 +70,7 @@ jobs:
           git add packages/sdk/package.json package-lock.json
           git commit -m "release: $TAG"
           git tag -a "$TAG" -m "$TAG"
-          git push origin main --follow-tags
+          git push --atomic origin main "$TAG"
 
       - run: npm ci
 
