@@ -1,6 +1,6 @@
 {
   "name": "@credit-cooperative/platform-sdk",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "description": "Official TypeScript SDK for the Credit Cooperative platform API.",
   "license": "MIT",
   "author": "Credit Cooperative",
@@ -13,7 +13,13 @@
   "bugs": {
     "url": "https://github.com/credit-cooperative/platform-sdk-ts/issues"
   },
-  "keywords": ["creditcoop", "credit-cooperative", "sdk", "defi", "openapi"],
+  "keywords": [
+    "creditcoop",
+    "credit-cooperative",
+    "sdk",
+    "defi",
+    "openapi"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -24,7 +30,11 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "sideEffects": false,
   "engines": {
     "node": ">=20"
