@@ -1,6 +1,6 @@
 {
   "name": "@credit-cooperative/platform-sdk",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "Official TypeScript SDK for the Credit Cooperative platform API.",
   "license": "MIT",
   "author": "Credit Cooperative",
