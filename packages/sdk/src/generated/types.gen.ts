@@ -599,7 +599,7 @@ export type GetPlatformStatsResponses = {
 
 export type GetPlatformStatsResponse = GetPlatformStatsResponses[keyof GetPlatformStatsResponses];
 
-export type GetVaultApysData = {
+export type GetPlatformVaultApysData = {
     body?: never;
     path?: never;
     query?: {
@@ -611,7 +611,7 @@ export type GetVaultApysData = {
     url: '/v3/platform/stats/vault-apys';
 };
 
-export type GetVaultApysResponses = {
+export type GetPlatformVaultApysResponses = {
     /**
      * Default Response
      */
@@ -634,7 +634,166 @@ export type GetVaultApysResponses = {
     };
 };
 
-export type GetVaultApysResponse = GetVaultApysResponses[keyof GetVaultApysResponses];
+export type GetPlatformVaultApysResponse = GetPlatformVaultApysResponses[keyof GetPlatformVaultApysResponses];
+
+export type GetPlatformTimeSeriesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * CAIP-2 network filter (e.g. "eip155:1")
+         */
+        networkId?: string;
+        /**
+         * Inclusive start date (YYYY-MM-DD)
+         */
+        startDate?: string;
+        /**
+         * Inclusive end date (YYYY-MM-DD)
+         */
+        endDate?: string;
+        granularity?: 'monthly' | 'daily';
+    };
+    url: '/v3/platform/stats/time-series';
+};
+
+export type GetPlatformTimeSeriesResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        series: Array<{
+            /**
+             * 'YYYY-MM' (monthly) or 'YYYY-MM-DD' (daily)
+             */
+            period: string;
+            /**
+             * Total borrowed in USD this period.
+             */
+            borrowUsd: string;
+            /**
+             * Total principal repaid in USD this period.
+             */
+            repayPrincipalUsd: string;
+            /**
+             * Total interest repaid in USD this period.
+             */
+            repayInterestUsd: string;
+            /**
+             * Cumulative outstanding principal in USD at end of period.
+             */
+            netOutstandingUsd: string;
+            /**
+             * Cumulative total volume in USD (borrow + repaid principal + interest) accumulated across the returned periods.
+             */
+            cumulativeVolumeUsd: string;
+        }>;
+    };
+};
+
+export type GetPlatformTimeSeriesResponse = GetPlatformTimeSeriesResponses[keyof GetPlatformTimeSeriesResponses];
+
+export type GetPlatformTvlTimeSeriesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * CAIP-2 network filter (e.g. "eip155:1")
+         */
+        networkId?: string;
+        /**
+         * Inclusive start date (YYYY-MM-DD). Defaults to a safe lookback window.
+         */
+        startDate?: string;
+        /**
+         * Inclusive end date (YYYY-MM-DD). Defaults to today (UTC).
+         */
+        endDate?: string;
+        granularity?: 'monthly' | 'daily';
+    };
+    url: '/v3/platform/stats/tvl/time-series';
+};
+
+export type GetPlatformTvlTimeSeriesResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        series: Array<{
+            /**
+             * 'YYYY-MM' (monthly) or 'YYYY-MM-DD' (daily)
+             */
+            period: string;
+            /**
+             * Total value locked in USD at end of period.
+             */
+            tvl: string;
+        }>;
+    };
+};
+
+export type GetPlatformTvlTimeSeriesResponse = GetPlatformTvlTimeSeriesResponses[keyof GetPlatformTvlTimeSeriesResponses];
+
+export type GetPlatformVaultApysTimeSeriesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * CAIP-2 network filter (e.g. "eip155:1")
+         */
+        networkId?: string;
+        /**
+         * Inclusive start date (YYYY-MM-DD). Defaults to a safe lookback window.
+         */
+        startDate?: string;
+        /**
+         * Inclusive end date (YYYY-MM-DD). Defaults to today (UTC).
+         */
+        endDate?: string;
+        granularity?: 'monthly' | 'daily';
+        /**
+         * Trailing APY lookback window in days (independent of granularity). Default 30, max 366.
+         */
+        period?: number;
+    };
+    url: '/v3/platform/stats/vault-apys/time-series';
+};
+
+export type GetPlatformVaultApysTimeSeriesResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        series: Array<{
+            /**
+             * 'YYYY-MM' (monthly) or 'YYYY-MM-DD' (daily)
+             */
+            period: string;
+            /**
+             * TVL-weighted APY in basis points; null when no vault has enough history in the bucket.
+             */
+            weightedApyBps: unknown;
+            /**
+             * TVL-weighted APY as percentage number (e.g. 8.50 = 8.50%); null mirrors weightedApyBps.
+             */
+            weightedApyPct: unknown;
+            /**
+             * Total weight (scaled totalAssets) used for the bucket.
+             */
+            totalTvl: string;
+            /**
+             * Max decimals used to normalize the bucket TVL weights.
+             */
+            decimals: number;
+            /**
+             * Vaults that contributed APY + weight to the bucket.
+             */
+            vaultCount: number;
+        }>;
+    };
+};
+
+export type GetPlatformVaultApysTimeSeriesResponse = GetPlatformVaultApysTimeSeriesResponses[keyof GetPlatformVaultApysTimeSeriesResponses];
 
 export type ListApiKeysData = {
     body?: never;
@@ -782,51 +941,47 @@ export type RevokeApiKeyResponses = {
 
 export type RevokeApiKeyResponse = RevokeApiKeyResponses[keyof RevokeApiKeyResponses];
 
-export type ListLedgerEntriesData = {
+export type ListBorrowsData = {
     body?: never;
     path?: never;
     query: {
         /**
-         * Organization ID (must be an org the caller is a member of, or a public org if caller is a vault curator). Example: 550e8400-e29b-41d4-a716-446655440000
+         * Organization ID (must be an org the caller is a member of, or a public org if caller is a vault curator).
          */
         organizationId: string;
         /**
-         * Filter by entry type
-         */
-        entryType?: 'transfer' | 'borrow' | 'repay_principal' | 'repay_interest';
-        /**
-         * Filter by transfer stage (only applies to transfer type)
-         */
-        stage?: 'external' | 'in_transit' | 'secured' | 'settled';
-        /**
-         * Start date (YYYY-MM-DD). Example: 2025-01-15
+         * Optional filter. Inclusive start date (YYYY-MM-DD); restricts results to `occurredAt >= startDate` (or `snapshotDate` for collateral-snapshots). Omit to leave the start unbounded.
          */
         startDate?: string;
         /**
-         * End date, inclusive (YYYY-MM-DD). Example: 2025-01-15
+         * Optional filter. Inclusive end date (YYYY-MM-DD). Omit to leave the end unbounded.
          */
         endDate?: string;
         /**
-         * Response format. "json" returns paginated JSON (default 100, max 1000). "csv" returns a streamed CSV file download. "event-stream" returns Server-Sent Events with each entry as a named "entry" event and a final "done" event.
-         */
-        format?: 'json' | 'csv' | 'event-stream';
-        /**
-         * Maximum number of results. For json: default 100, max 1000. For csv/event-stream: default 1000000, max 1000000.
+         * Maximum records returned. Format-dependent: `format=json` capped at 1000 (default 100); `format=csv|event-stream` capped at 1,000,000 (default 1,000,000). Values outside these caps are silently clamped server-side.
          */
         limit?: number;
         /**
-         * Number of results to skip
+         * Number of records to skip from the start (JSON pagination only — ignored for csv/event-stream).
          */
         offset?: number;
         /**
-         * Exclude transfers that are part of borrow/repay operations to avoid double-counting
+         * Response format. `json` returns paginated JSON. `csv` streams a CSV file download. `event-stream` returns Server-Sent Events: each row is a named `entry` event; a final `done` event carries `{"total": N}`.
          */
-        excludeLinkedTransfers?: boolean;
+        format?: 'json' | 'csv' | 'event-stream';
+        /**
+         * Optional filter. CAIP-2 network identifier; restricts results to a single chain. Omit to return all networks.
+         */
+        networkId?: string;
+        /**
+         * Optional filter. Credit facility (SecuredLine) contract address; restricts results to a single facility. Omit to return all facilities for the organization.
+         */
+        facilityAddress?: string;
     };
-    url: '/v3/ledger-entries';
+    url: '/v3/ledger/borrows';
 };
 
-export type ListLedgerEntriesErrors = {
+export type ListBorrowsErrors = {
     /**
      * Default Response
      */
@@ -845,25 +1000,295 @@ export type ListLedgerEntriesErrors = {
     404: ErrorResponse;
 };
 
-export type ListLedgerEntriesError = ListLedgerEntriesErrors[keyof ListLedgerEntriesErrors];
+export type ListBorrowsError = ListBorrowsErrors[keyof ListBorrowsErrors];
 
-export type ListLedgerEntriesResponses = {
+export type ListBorrowsResponses = {
     /**
-     * Ledger entries. Response format depends on the `format` query parameter.
+     * Credit facility borrow events.
      */
     200: {
         entries: Array<{
             id: string;
-            entryType: string;
+            organizationId: string;
+            evmLogId: string;
+            /**
+             * Credit facility (SecuredLine) contract address.
+             */
+            facilityAddress: string;
+            /**
+             * Token amount with full decimal precision. Returned as a string to avoid floating-point precision loss.
+             */
+            amount: string;
+            /**
+             * USD value at time of entry. Returned as a string. May be `null` when no historical price is available for the currency.
+             */
+            amountUsd?: string | null;
+            /**
+             * Token symbol stored verbatim from source.
+             */
+            currency: string;
+            occurredAt: string;
+            /**
+             * Origin of the data, e.g. `blockchain:ethereum`, `blockchain:base`.
+             */
+            dataSource: string;
+            /**
+             * CAIP-2 network identifier.
+             */
+            networkId: string;
+            /**
+             * 0x-prefixed transaction hash.
+             */
+            transactionHash: string;
+            /**
+             * Position of the log within the transaction.
+             */
+            logIndex: number;
+            createdAt: string;
+            /**
+             * Display name of the owning organization.
+             */
+            organizationName?: string | null;
+            /**
+             * URL-safe slug of the owning organization.
+             */
+            organizationSlug?: string | null;
+        }>;
+        pagination: Pagination;
+    };
+};
+
+export type ListBorrowsResponse = ListBorrowsResponses[keyof ListBorrowsResponses];
+
+export type ListRepaysData = {
+    body?: never;
+    path?: never;
+    query: {
+        /**
+         * Organization ID (must be an org the caller is a member of, or a public org if caller is a vault curator).
+         */
+        organizationId: string;
+        /**
+         * Optional filter. Inclusive start date (YYYY-MM-DD); restricts results to `occurredAt >= startDate` (or `snapshotDate` for collateral-snapshots). Omit to leave the start unbounded.
+         */
+        startDate?: string;
+        /**
+         * Optional filter. Inclusive end date (YYYY-MM-DD). Omit to leave the end unbounded.
+         */
+        endDate?: string;
+        /**
+         * Maximum records returned. Format-dependent: `format=json` capped at 1000 (default 100); `format=csv|event-stream` capped at 1,000,000 (default 1,000,000). Values outside these caps are silently clamped server-side.
+         */
+        limit?: number;
+        /**
+         * Number of records to skip from the start (JSON pagination only — ignored for csv/event-stream).
+         */
+        offset?: number;
+        /**
+         * Response format. `json` returns paginated JSON. `csv` streams a CSV file download. `event-stream` returns Server-Sent Events: each row is a named `entry` event; a final `done` event carries `{"total": N}`.
+         */
+        format?: 'json' | 'csv' | 'event-stream';
+        /**
+         * Optional filter. Restricts results to a single repayment subtype: `principal` (reduces outstanding principal) or `interest` (paid to depositors). Omit to return both.
+         */
+        repaymentType?: 'principal' | 'interest';
+        /**
+         * Optional filter. CAIP-2 network identifier; restricts results to a single chain. Omit to return all networks.
+         */
+        networkId?: string;
+        /**
+         * Optional filter. Credit facility (SecuredLine) contract address; restricts results to a single facility. Omit to return all facilities for the organization.
+         */
+        facilityAddress?: string;
+    };
+    url: '/v3/ledger/repays';
+};
+
+export type ListRepaysErrors = {
+    /**
+     * Default Response
+     */
+    400: ErrorResponse;
+    /**
+     * Default Response
+     */
+    401: ErrorResponse;
+    /**
+     * Default Response
+     */
+    403: ErrorResponse;
+    /**
+     * Default Response
+     */
+    404: ErrorResponse;
+};
+
+export type ListRepaysError = ListRepaysErrors[keyof ListRepaysErrors];
+
+export type ListRepaysResponses = {
+    /**
+     * Credit facility repayment events.
+     */
+    200: {
+        entries: Array<{
+            id: string;
+            organizationId: string;
+            evmLogId: string;
+            /**
+             * Repayment subtype: `principal` reduces outstanding principal; `interest` is paid to depositors.
+             */
+            repaymentType: 'principal' | 'interest';
+            /**
+             * Credit facility (SecuredLine) contract address.
+             */
+            facilityAddress: string;
+            /**
+             * Token amount with full decimal precision. Returned as a string to avoid floating-point precision loss.
+             */
+            amount: string;
+            /**
+             * USD value at time of entry. Returned as a string. May be `null` when no historical price is available for the currency.
+             */
+            amountUsd?: string | null;
+            currency: string;
+            occurredAt: string;
+            dataSource: string;
+            networkId: string;
+            transactionHash: string;
+            logIndex: number;
+            createdAt: string;
+            /**
+             * Display name of the owning organization.
+             */
+            organizationName?: string | null;
+            /**
+             * URL-safe slug of the owning organization.
+             */
+            organizationSlug?: string | null;
+        }>;
+        pagination: Pagination;
+    };
+};
+
+export type ListRepaysResponse = ListRepaysResponses[keyof ListRepaysResponses];
+
+export type ListCashflowTransfersData = {
+    body?: never;
+    path?: never;
+    query: {
+        /**
+         * Organization ID (must be an org the caller is a member of, or a public org if caller is a vault curator).
+         */
+        organizationId: string;
+        /**
+         * Optional filter. Inclusive start date (YYYY-MM-DD); restricts results to `occurredAt >= startDate` (or `snapshotDate` for collateral-snapshots). Omit to leave the start unbounded.
+         */
+        startDate?: string;
+        /**
+         * Optional filter. Inclusive end date (YYYY-MM-DD). Omit to leave the end unbounded.
+         */
+        endDate?: string;
+        /**
+         * Maximum records returned. Format-dependent: `format=json` capped at 1000 (default 100); `format=csv|event-stream` capped at 1,000,000 (default 1,000,000). Values outside these caps are silently clamped server-side.
+         */
+        limit?: number;
+        /**
+         * Number of records to skip from the start (JSON pagination only — ignored for csv/event-stream).
+         */
+        offset?: number;
+        /**
+         * Response format. `json` returns paginated JSON. `csv` streams a CSV file download. `event-stream` returns Server-Sent Events: each row is a named `entry` event; a final `done` event carries `{"total": N}`.
+         */
+        format?: 'json' | 'csv' | 'event-stream';
+        /**
+         * Optional filter. CAIP-2 network identifier; restricts results to a single chain. Omit to return all networks.
+         */
+        networkId?: string;
+        /**
+         * Optional filter. Wallet address (on-chain) or bank account identifier (off-chain); restricts results to a single account. Omit to return all accounts.
+         */
+        accountId?: string;
+        /**
+         * Optional filter. Cash-flow stage (`external` → `in_transit` → `secured` → `settled`); restricts results to a single stage. Omit to return all stages.
+         */
+        stage?: 'external' | 'in_transit' | 'secured' | 'settled';
+        /**
+         * Optional filter. Transfer mechanism; restricts results to a single mechanism (common values: `swap`, `bridge`, `onramp`, `wire`, `ach`, `direct`). Omit to return all mechanisms.
+         */
+        type?: string;
+        /**
+         * Optional filter. `true` = arriving only, `false` = leaving only. Omit to return both directions.
+         */
+        inflow?: boolean;
+        /**
+         * Optional. When `true`, excludes transfers whose tx hash matches a known borrow/repay event, to avoid double-counting with /v3/ledger/borrows and /v3/ledger/repays. Defaults to `false`.
+         */
+        excludeLinkedTransfers?: boolean;
+    };
+    url: '/v3/ledger/transfers';
+};
+
+export type ListCashflowTransfersErrors = {
+    /**
+     * Default Response
+     */
+    400: ErrorResponse;
+    /**
+     * Default Response
+     */
+    401: ErrorResponse;
+    /**
+     * Default Response
+     */
+    403: ErrorResponse;
+    /**
+     * Default Response
+     */
+    404: ErrorResponse;
+};
+
+export type ListCashflowTransfersError = ListCashflowTransfersErrors[keyof ListCashflowTransfersErrors];
+
+export type ListCashflowTransfersResponses = {
+    /**
+     * Individual cashflow transfer events.
+     */
+    200: {
+        entries: Array<{
+            id: string;
             organizationId: string;
             webCaptureId?: string | null;
             evmLogId?: string | null;
             /**
-             * Amount in the native token currency. Returned as a string to avoid floating-point precision loss.
+             * true = arriving, false = leaving.
+             */
+            inflow: boolean;
+            /**
+             * Cash-flow stage at time of capture (`external` → `in_transit` → `secured` → `settled`).
+             */
+            stage: 'external' | 'in_transit' | 'secured' | 'settled';
+            /**
+             * Transfer mechanism (common values: `swap`, `bridge`, `onramp`, `wire`, `ach`, `direct`).
+             */
+            type?: string | null;
+            /**
+             * Wallet address (on-chain) or bank account identifier (off-chain).
+             */
+            accountId: string;
+            /**
+             * Source institution that reported this transfer (e.g. `self_report`, `visa`).
+             */
+            institutionId?: string | null;
+            /**
+             * Source-system identifier for the transaction.
+             */
+            externalTransactionId?: string | null;
+            /**
+             * Token amount with full decimal precision. Returned as a string to avoid floating-point precision loss.
              */
             amount: string;
             /**
-             * Amount in USD. Returned as a string to avoid floating-point precision loss.
+             * USD value at time of entry. Returned as a string. May be `null` when no historical price is available for the currency.
              */
             amountUsd?: string | null;
             currency: string;
@@ -872,26 +1297,218 @@ export type ListLedgerEntriesResponses = {
             networkId?: string | null;
             transactionHash?: string | null;
             logIndex?: number | null;
-            inflow?: boolean | null;
-            stage?: string | null;
-            type?: string | null;
-            accountId?: string | null;
-            institutionId?: string | null;
-            externalTransactionId?: string | null;
             createdAt: string;
+            /**
+             * Display name of the owning organization.
+             */
+            organizationName?: string | null;
+            /**
+             * URL-safe slug of the owning organization.
+             */
+            organizationSlug?: string | null;
         }>;
-        pagination: {
-            total: number;
-            limit: number;
-            offset: number;
-        };
+        pagination: Pagination;
     };
 };
 
-export type ListLedgerEntriesResponse = ListLedgerEntriesResponses[keyof ListLedgerEntriesResponses];
+export type ListCashflowTransfersResponse = ListCashflowTransfersResponses[keyof ListCashflowTransfersResponses];
+
+export type ListCumulativeCashflowsData = {
+    body?: never;
+    path?: never;
+    query: {
+        /**
+         * Organization ID (must be an org the caller is a member of, or a public org if caller is a vault curator).
+         */
+        organizationId: string;
+        /**
+         * Optional filter. Inclusive start date (YYYY-MM-DD); restricts results to `occurredAt >= startDate` (or `snapshotDate` for collateral-snapshots). Omit to leave the start unbounded.
+         */
+        startDate?: string;
+        /**
+         * Optional filter. Inclusive end date (YYYY-MM-DD). Omit to leave the end unbounded.
+         */
+        endDate?: string;
+        /**
+         * Maximum records returned. Format-dependent: `format=json` capped at 1000 (default 100); `format=csv|event-stream` capped at 1,000,000 (default 1,000,000). Values outside these caps are silently clamped server-side.
+         */
+        limit?: number;
+        /**
+         * Number of records to skip from the start (JSON pagination only — ignored for csv/event-stream).
+         */
+        offset?: number;
+        /**
+         * Response format. `json` returns paginated JSON. `csv` streams a CSV file download. `event-stream` returns Server-Sent Events: each row is a named `entry` event; a final `done` event carries `{"total": N}`.
+         */
+        format?: 'json' | 'csv' | 'event-stream';
+        /**
+         * Optional filter. Source institution that reported the aggregate (e.g. `self_report`, `visa`); restricts results to a single institution. Omit to return all institutions.
+         */
+        institutionId?: string;
+        /**
+         * Optional filter. Cash-flow stage (`external` → `in_transit` → `secured` → `settled`); restricts results to a single stage. Omit to return all stages.
+         */
+        stage?: 'external' | 'in_transit' | 'secured' | 'settled';
+        /**
+         * Optional filter. `true` = arriving only, `false` = leaving only. Omit to return both directions.
+         */
+        inflow?: boolean;
+    };
+    url: '/v3/ledger/cumulative-cashflows';
+};
+
+export type ListCumulativeCashflowsErrors = {
+    /**
+     * Default Response
+     */
+    400: ErrorResponse;
+    /**
+     * Default Response
+     */
+    401: ErrorResponse;
+    /**
+     * Default Response
+     */
+    403: ErrorResponse;
+    /**
+     * Default Response
+     */
+    404: ErrorResponse;
+};
+
+export type ListCumulativeCashflowsError = ListCumulativeCashflowsErrors[keyof ListCumulativeCashflowsErrors];
+
+export type ListCumulativeCashflowsResponses = {
+    /**
+     * Aggregate daily cashflow snapshots.
+     */
+    200: {
+        entries: Array<{
+            id: string;
+            organizationId: string;
+            webCaptureId: string;
+            inflow: boolean;
+            /**
+             * Cash-flow stage at time of capture (`external` → `in_transit` → `secured` → `settled`).
+             */
+            stage: 'external' | 'in_transit' | 'secured' | 'settled';
+            accountId?: string | null;
+            /**
+             * Source institution that reported this aggregate (e.g. `self_report`, `visa`).
+             */
+            institutionId: string;
+            /**
+             * Source-system identifier for the aggregate.
+             */
+            externalTransactionId: string;
+            /**
+             * Token amount with full decimal precision. Returned as a string to avoid floating-point precision loss.
+             */
+            amount: string;
+            /**
+             * USD value at time of entry. Returned as a string. May be `null` when no historical price is available for the currency.
+             */
+            amountUsd?: string | null;
+            currency: string;
+            occurredAt: string;
+            dataSource: string;
+            createdAt: string;
+            /**
+             * Display name of the owning organization.
+             */
+            organizationName?: string | null;
+            /**
+             * URL-safe slug of the owning organization.
+             */
+            organizationSlug?: string | null;
+        }>;
+        pagination: Pagination;
+    };
+};
+
+export type ListCumulativeCashflowsResponse = ListCumulativeCashflowsResponses[keyof ListCumulativeCashflowsResponses];
+
+export type ListCumulativeCollateralData = {
+    body?: never;
+    path?: never;
+    query: {
+        /**
+         * Organization ID (must be an org the caller is a member of, or a public org if caller is a vault curator).
+         */
+        organizationId: string;
+        /**
+         * Optional filter. Inclusive start date (YYYY-MM-DD); restricts results to `occurredAt >= startDate` (or `snapshotDate` for collateral-snapshots). Omit to leave the start unbounded.
+         */
+        startDate?: string;
+        /**
+         * Optional filter. Inclusive end date (YYYY-MM-DD). Omit to leave the end unbounded.
+         */
+        endDate?: string;
+        /**
+         * Maximum records returned. Format-dependent: `format=json` capped at 1000 (default 100); `format=csv|event-stream` capped at 1,000,000 (default 1,000,000). Values outside these caps are silently clamped server-side.
+         */
+        limit?: number;
+        /**
+         * Number of records to skip from the start (JSON pagination only — ignored for csv/event-stream).
+         */
+        offset?: number;
+        /**
+         * Response format. `json` returns paginated JSON. `csv` streams a CSV file download. `event-stream` returns Server-Sent Events: each row is a named `entry` event; a final `done` event carries `{"total": N}`.
+         */
+        format?: 'json' | 'csv' | 'event-stream';
+    };
+    url: '/v3/ledger/cumulative-collateral';
+};
+
+export type ListCumulativeCollateralErrors = {
+    /**
+     * Default Response
+     */
+    400: ErrorResponse;
+    /**
+     * Default Response
+     */
+    401: ErrorResponse;
+    /**
+     * Default Response
+     */
+    403: ErrorResponse;
+    /**
+     * Default Response
+     */
+    404: ErrorResponse;
+};
+
+export type ListCumulativeCollateralError = ListCumulativeCollateralErrors[keyof ListCumulativeCollateralErrors];
+
+export type ListCumulativeCollateralResponses = {
+    /**
+     * Point-in-time collateral USD snapshots (one row per org per day).
+     */
+    200: {
+        entries: Array<{
+            id: string;
+            organizationId: string;
+            organizationName?: string | null;
+            webCaptureId: string;
+            /**
+             * USD value (6 fractional digits). Returned as a string to avoid floating-point precision loss.
+             */
+            amountUsd: string;
+            snapshotDate: string;
+            createdAt: string;
+        }>;
+        pagination: Pagination;
+    };
+};
+
+export type ListCumulativeCollateralResponse = ListCumulativeCollateralResponses[keyof ListCumulativeCollateralResponses];
 
 export type SubmitSelfReportCashflowsData = {
     body: {
+        /**
+         * A single cashflow item. Its shape is selected by the `type` field: transaction, aggregate, or collateral.
+         */
         items: Array<{
             type: 'transaction';
             /**
@@ -3797,9 +4414,9 @@ export type VerifyWalletAttestationData = {
          */
         address: string;
         /**
-         * CAIP-2 network identifier (e.g., "eip155:1" for Ethereum, "eip155:8453" for Base).
+         * Network namespace the user is attesting under. The signature is NOT chain-bound — for EVM ('eip155'), the same attestation covers all eip155 chains.
          */
-        networkId: string;
+        namespace: 'eip155';
         /**
          * The signed message signature from the wallet.
          */
@@ -3843,9 +4460,12 @@ export type VerifyWalletAttestationResponses = {
         id: string;
         address: string;
         networkNamespace: string;
-        networkId?: string | null;
         verifiedAt: string;
         createdAt: string;
+        subscriptions?: Array<{
+            type: 'wallet_transactional' | 'weekly_portfolio';
+            enabled: boolean;
+        }>;
     };
 };
 
@@ -3854,7 +4474,12 @@ export type VerifyWalletAttestationResponse = VerifyWalletAttestationResponses[k
 export type ListAttestedWalletsData = {
     body?: never;
     path?: never;
-    query?: never;
+    query?: {
+        /**
+         * Optional extras to include in the response. Currently only `multisigs` is supported.
+         */
+        include?: 'multisigs';
+    };
     url: '/v3/users/me/wallets';
 };
 
@@ -3877,17 +4502,112 @@ export type ListAttestedWalletsResponses = {
      */
     200: {
         wallets: Array<{
-            id: string;
+            type: 'eoa' | 'multisig' | 'org_eoa';
+            id?: string;
             address: string;
-            networkNamespace: string;
-            networkId?: string | null;
-            verifiedAt: string;
-            createdAt: string;
+            networkNamespace?: string;
+            verifiedAt?: string;
+            createdAt?: string;
+            networkId?: string;
+            organizationId?: string;
+            organizationName?: string;
+            subscriptions: Array<{
+                type: 'wallet_transactional' | 'weekly_portfolio';
+                enabled: boolean;
+            }>;
         }>;
     };
 };
 
 export type ListAttestedWalletsResponse = ListAttestedWalletsResponses[keyof ListAttestedWalletsResponses];
+
+export type UpdateEmailSubscriptionsData = {
+    body: {
+        changes: Array<{
+            /**
+             * EVM address. The server normalizes to EIP-55 checksum form before lookup, so lowercase or mixed case are accepted.
+             */
+            address: string;
+            networkId: string;
+            type: 'wallet_transactional' | 'weekly_portfolio';
+            enabled: boolean;
+        }>;
+    };
+    path?: never;
+    query?: never;
+    url: '/v3/users/me/email-subscriptions';
+};
+
+export type UpdateEmailSubscriptionsErrors = {
+    /**
+     * Default Response
+     */
+    400: ErrorResponse;
+    /**
+     * Default Response
+     */
+    401: ErrorResponse;
+    /**
+     * Default Response
+     */
+    404: ErrorResponse;
+};
+
+export type UpdateEmailSubscriptionsError = UpdateEmailSubscriptionsErrors[keyof UpdateEmailSubscriptionsErrors];
+
+export type UpdateEmailSubscriptionsResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        wallets: Array<{
+            type: 'eoa' | 'multisig' | 'org_eoa';
+            id?: string;
+            address: string;
+            networkNamespace?: string;
+            verifiedAt?: string;
+            createdAt?: string;
+            networkId?: string;
+            organizationId?: string;
+            organizationName?: string;
+            subscriptions: Array<{
+                type: 'wallet_transactional' | 'weekly_portfolio';
+                enabled: boolean;
+            }>;
+        }>;
+    };
+};
+
+export type UpdateEmailSubscriptionsResponse = UpdateEmailSubscriptionsResponses[keyof UpdateEmailSubscriptionsResponses];
+
+export type UnsubscribeViaLinkData = {
+    body?: never;
+    path?: never;
+    query: {
+        token: string;
+    };
+    url: '/email/unsubscribe';
+};
+
+export type UnsubscribeViaOneClickData = {
+    body?: never;
+    path?: never;
+    query: {
+        token: string;
+    };
+    url: '/email/unsubscribe';
+};
+
+export type UnsubscribeViaOneClickResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        success?: boolean;
+    };
+};
+
+export type UnsubscribeViaOneClickResponse = UnsubscribeViaOneClickResponses[keyof UnsubscribeViaOneClickResponses];
 
 export type ListOrgMultisigsData = {
     body?: never;

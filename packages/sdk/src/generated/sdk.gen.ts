@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { CheckUserVerificationData, CheckUserVerificationErrors, CheckUserVerificationResponses, CheckVaultWhitelistData, CheckVaultWhitelistErrors, CheckVaultWhitelistResponses, CreateApiKeyData, CreateApiKeyErrors, CreateApiKeyResponses, CreateWhitelistRequestData, CreateWhitelistRequestErrors, CreateWhitelistRequestResponses, GenerateWalletChallengeData, GenerateWalletChallengeErrors, GenerateWalletChallengeResponses, GetBenchmarkRateData, GetBenchmarkRateErrors, GetBenchmarkRateResponses, GetBenchmarkVaultApyData, GetBenchmarkVaultApyErrors, GetBenchmarkVaultApyResponses, GetBorrowerAnalyticsData, GetBorrowerAnalyticsErrors, GetBorrowerAnalyticsResponses, GetBorrowerData, GetBorrowerErrors, GetBorrowerLogsData, GetBorrowerLogsErrors, GetBorrowerLogsResponses, GetBorrowerResponses, GetCreditFacilityCreditLinesData, GetCreditFacilityCreditLinesErrors, GetCreditFacilityCreditLinesResponses, GetCreditFacilityData, GetCreditFacilityErrors, GetCreditFacilityProposalsData, GetCreditFacilityProposalsErrors, GetCreditFacilityProposalsResponses, GetCreditFacilityResponses, GetDepositorBalancesData, GetDepositorBalancesErrors, GetDepositorBalancesResponses, GetDepositorPendingDepositsData, GetDepositorPendingDepositsErrors, GetDepositorPendingDepositsResponses, GetDepositorPendingRedemptionsData, GetDepositorPendingRedemptionsErrors, GetDepositorPendingRedemptionsResponses, GetDepositorPortfolioData, GetDepositorPortfolioErrors, GetDepositorPortfolioResponses, GetHealthData, GetHealthResponses, GetPlatformStatsData, GetPlatformStatsResponses, GetVaultApysData, GetVaultApysResponses, GetVaultCreditLinesData, GetVaultCreditLinesErrors, GetVaultCreditLinesResponses, GetVaultCuratorData, GetVaultCuratorErrors, GetVaultCuratorResponses, GetVaultData, GetVaultErrors, GetVaultHistoricalAssetsData, GetVaultHistoricalAssetsErrors, GetVaultHistoricalAssetsResponses, GetVaultLiquidStrategyData, GetVaultLiquidStrategyErrors, GetVaultLiquidStrategyResponses, GetVaultLogsData, GetVaultLogsErrors, GetVaultLogsResponses, GetVaultPendingDepositsData, GetVaultPendingDepositsErrors, GetVaultPendingDepositsResponses, GetVaultPendingRedemptionsData, GetVaultPendingRedemptionsErrors, GetVaultPendingRedemptionsResponses, GetVaultResponses, GetWhitelistRequestData, GetWhitelistRequestErrors, GetWhitelistRequestResponses, ListApiKeysData, ListApiKeysErrors, ListApiKeysResponses, ListAttestedWalletsData, ListAttestedWalletsErrors, ListAttestedWalletsResponses, ListBorrowersData, ListBorrowersResponses, ListCreditFacilitiesData, ListCreditFacilitiesErrors, ListCreditFacilitiesResponses, ListKybEligibleOrganizationsData, ListKybEligibleOrganizationsErrors, ListKybEligibleOrganizationsResponses, ListLedgerEntriesData, ListLedgerEntriesErrors, ListLedgerEntriesResponses, ListMyOrganizationsData, ListMyOrganizationsErrors, ListMyOrganizationsResponses, ListMyWhitelistRequestsData, ListMyWhitelistRequestsErrors, ListMyWhitelistRequestsResponses, ListNetworksData, ListNetworksResponses, ListOrgMultisigsData, ListOrgMultisigsErrors, ListOrgMultisigsResponses, ListTokensData, ListTokensResponses, ListVaultCuratorsData, ListVaultCuratorsResponses, ListVaultsData, ListVaultsResponses, ListVaultWhitelistRequestsData, ListVaultWhitelistRequestsErrors, ListVaultWhitelistRequestsResponses, RecordBiometricConsentData, RecordBiometricConsentErrors, RecordBiometricConsentResponses, RejectWhitelistRequestData, RejectWhitelistRequestErrors, RejectWhitelistRequestResponses, RevokeApiKeyData, RevokeApiKeyErrors, RevokeApiKeyResponses, SubmitSelfReportCashflowsData, SubmitSelfReportCashflowsErrors, SubmitSelfReportCashflowsResponses, VerifyWalletAttestationData, VerifyWalletAttestationErrors, VerifyWalletAttestationResponses } from './types.gen';
+import type { CheckUserVerificationData, CheckUserVerificationErrors, CheckUserVerificationResponses, CheckVaultWhitelistData, CheckVaultWhitelistErrors, CheckVaultWhitelistResponses, CreateApiKeyData, CreateApiKeyErrors, CreateApiKeyResponses, CreateWhitelistRequestData, CreateWhitelistRequestErrors, CreateWhitelistRequestResponses, GenerateWalletChallengeData, GenerateWalletChallengeErrors, GenerateWalletChallengeResponses, GetBenchmarkRateData, GetBenchmarkRateErrors, GetBenchmarkRateResponses, GetBenchmarkVaultApyData, GetBenchmarkVaultApyErrors, GetBenchmarkVaultApyResponses, GetBorrowerAnalyticsData, GetBorrowerAnalyticsErrors, GetBorrowerAnalyticsResponses, GetBorrowerData, GetBorrowerErrors, GetBorrowerLogsData, GetBorrowerLogsErrors, GetBorrowerLogsResponses, GetBorrowerResponses, GetCreditFacilityCreditLinesData, GetCreditFacilityCreditLinesErrors, GetCreditFacilityCreditLinesResponses, GetCreditFacilityData, GetCreditFacilityErrors, GetCreditFacilityProposalsData, GetCreditFacilityProposalsErrors, GetCreditFacilityProposalsResponses, GetCreditFacilityResponses, GetDepositorBalancesData, GetDepositorBalancesErrors, GetDepositorBalancesResponses, GetDepositorPendingDepositsData, GetDepositorPendingDepositsErrors, GetDepositorPendingDepositsResponses, GetDepositorPendingRedemptionsData, GetDepositorPendingRedemptionsErrors, GetDepositorPendingRedemptionsResponses, GetDepositorPortfolioData, GetDepositorPortfolioErrors, GetDepositorPortfolioResponses, GetHealthData, GetHealthResponses, GetPlatformStatsData, GetPlatformStatsResponses, GetPlatformTimeSeriesData, GetPlatformTimeSeriesResponses, GetPlatformTvlTimeSeriesData, GetPlatformTvlTimeSeriesResponses, GetPlatformVaultApysData, GetPlatformVaultApysResponses, GetPlatformVaultApysTimeSeriesData, GetPlatformVaultApysTimeSeriesResponses, GetVaultCreditLinesData, GetVaultCreditLinesErrors, GetVaultCreditLinesResponses, GetVaultCuratorData, GetVaultCuratorErrors, GetVaultCuratorResponses, GetVaultData, GetVaultErrors, GetVaultHistoricalAssetsData, GetVaultHistoricalAssetsErrors, GetVaultHistoricalAssetsResponses, GetVaultLiquidStrategyData, GetVaultLiquidStrategyErrors, GetVaultLiquidStrategyResponses, GetVaultLogsData, GetVaultLogsErrors, GetVaultLogsResponses, GetVaultPendingDepositsData, GetVaultPendingDepositsErrors, GetVaultPendingDepositsResponses, GetVaultPendingRedemptionsData, GetVaultPendingRedemptionsErrors, GetVaultPendingRedemptionsResponses, GetVaultResponses, GetWhitelistRequestData, GetWhitelistRequestErrors, GetWhitelistRequestResponses, ListApiKeysData, ListApiKeysErrors, ListApiKeysResponses, ListAttestedWalletsData, ListAttestedWalletsErrors, ListAttestedWalletsResponses, ListBorrowersData, ListBorrowersResponses, ListBorrowsData, ListBorrowsErrors, ListBorrowsResponses, ListCashflowTransfersData, ListCashflowTransfersErrors, ListCashflowTransfersResponses, ListCreditFacilitiesData, ListCreditFacilitiesErrors, ListCreditFacilitiesResponses, ListCumulativeCashflowsData, ListCumulativeCashflowsErrors, ListCumulativeCashflowsResponses, ListCumulativeCollateralData, ListCumulativeCollateralErrors, ListCumulativeCollateralResponses, ListKybEligibleOrganizationsData, ListKybEligibleOrganizationsErrors, ListKybEligibleOrganizationsResponses, ListMyOrganizationsData, ListMyOrganizationsErrors, ListMyOrganizationsResponses, ListMyWhitelistRequestsData, ListMyWhitelistRequestsErrors, ListMyWhitelistRequestsResponses, ListNetworksData, ListNetworksResponses, ListOrgMultisigsData, ListOrgMultisigsErrors, ListOrgMultisigsResponses, ListRepaysData, ListRepaysErrors, ListRepaysResponses, ListTokensData, ListTokensResponses, ListVaultCuratorsData, ListVaultCuratorsResponses, ListVaultsData, ListVaultsResponses, ListVaultWhitelistRequestsData, ListVaultWhitelistRequestsErrors, ListVaultWhitelistRequestsResponses, RecordBiometricConsentData, RecordBiometricConsentErrors, RecordBiometricConsentResponses, RejectWhitelistRequestData, RejectWhitelistRequestErrors, RejectWhitelistRequestResponses, RevokeApiKeyData, RevokeApiKeyErrors, RevokeApiKeyResponses, SubmitSelfReportCashflowsData, SubmitSelfReportCashflowsErrors, SubmitSelfReportCashflowsResponses, UnsubscribeViaLinkData, UnsubscribeViaOneClickData, UnsubscribeViaOneClickResponses, UpdateEmailSubscriptionsData, UpdateEmailSubscriptionsErrors, UpdateEmailSubscriptionsResponses, VerifyWalletAttestationData, VerifyWalletAttestationErrors, VerifyWalletAttestationResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -68,13 +68,58 @@ export const getPlatformStats = <ThrowOnError extends boolean = false>(options?:
  *
  * Get APY for all lending vaults from sharePrice snapshots. No authentication required, but authenticated requests may receive increased rate limits.
  */
-export const getVaultApys = <ThrowOnError extends boolean = false>(options?: Options<GetVaultApysData, ThrowOnError>) => (options?.client ?? client).get<GetVaultApysResponses, unknown, ThrowOnError>({
+export const getPlatformVaultApys = <ThrowOnError extends boolean = false>(options?: Options<GetPlatformVaultApysData, ThrowOnError>) => (options?.client ?? client).get<GetPlatformVaultApysResponses, unknown, ThrowOnError>({
     security: [
         { name: 'x-api-key', type: 'apiKey' },
         { scheme: 'bearer', type: 'http' },
         { scheme: 'bearer', type: 'http' }
     ],
     url: '/v3/platform/stats/vault-apys',
+    ...options
+});
+
+/**
+ * Get platform activity time-series
+ *
+ * Platform-wide borrow/repay totals bucketed by period, with cumulative outstanding. Aggregate-only — no per-borrower data. No authentication required.
+ */
+export const getPlatformTimeSeries = <ThrowOnError extends boolean = false>(options?: Options<GetPlatformTimeSeriesData, ThrowOnError>) => (options?.client ?? client).get<GetPlatformTimeSeriesResponses, unknown, ThrowOnError>({
+    security: [
+        { name: 'x-api-key', type: 'apiKey' },
+        { scheme: 'bearer', type: 'http' },
+        { scheme: 'bearer', type: 'http' }
+    ],
+    url: '/v3/platform/stats/time-series',
+    ...options
+});
+
+/**
+ * Get platform TVL time-series
+ *
+ * Platform-wide TVL bucketed by period, from vault totalAssets() snapshots. Includes disabled vaults. Aggregate-only — no per-borrower data. No authentication required.
+ */
+export const getPlatformTvlTimeSeries = <ThrowOnError extends boolean = false>(options?: Options<GetPlatformTvlTimeSeriesData, ThrowOnError>) => (options?.client ?? client).get<GetPlatformTvlTimeSeriesResponses, unknown, ThrowOnError>({
+    security: [
+        { name: 'x-api-key', type: 'apiKey' },
+        { scheme: 'bearer', type: 'http' },
+        { scheme: 'bearer', type: 'http' }
+    ],
+    url: '/v3/platform/stats/tvl/time-series',
+    ...options
+});
+
+/**
+ * Get platform weighted-APY time-series
+ *
+ * Platform-wide TVL-weighted APY bucketed by period, from vault sharePrice()/totalAssets() snapshots. Includes disabled vaults. Aggregate-only — no per-borrower data. No authentication required.
+ */
+export const getPlatformVaultApysTimeSeries = <ThrowOnError extends boolean = false>(options?: Options<GetPlatformVaultApysTimeSeriesData, ThrowOnError>) => (options?.client ?? client).get<GetPlatformVaultApysTimeSeriesResponses, unknown, ThrowOnError>({
+    security: [
+        { name: 'x-api-key', type: 'apiKey' },
+        { scheme: 'bearer', type: 'http' },
+        { scheme: 'bearer', type: 'http' }
+    ],
+    url: '/v3/platform/stats/vault-apys/time-series',
     ...options
 });
 
@@ -128,39 +173,175 @@ export const revokeApiKey = <ThrowOnError extends boolean = false>(options: Opti
 });
 
 /**
- * Get ledger entries
+ * List credit facility borrow events
  *
- * Get ledger entries for an organization.
+ * Get on-chain borrow events for an organization. Each row represents a single `Borrow` event emitted by a SecuredLine credit facility — the moment outstanding principal was drawn against the line.
+ *
+ * Results are sorted by `occurredAt` (descending — newest first). Ordering is not configurable from the query string.
  *
  * Supports three response formats via the `format` query parameter:
  * - **json** (default) — paginated JSON (default limit 100, max 1000).
- * - **csv** — streamed CSV file download (up to 1 000 000 rows).
- * - **event-stream** — Server-Sent Events stream (up to 1 000 000 rows). Each entry is emitted as a named `entry` event with JSON data. A final `done` event carries `{"total": N}`. Connect with `EventSource` or `fetch`:
+ * - **csv** — streamed CSV file download (up to 1,000,000 rows). Columns: inflow, transaction, type, timestamp, amount, usdValue, tokenAddress, tokenIcon, tokenSymbol.
+ * - **event-stream** — Server-Sent Events stream (up to 1,000,000 rows). Each entry is emitted as a named `entry` event with JSON data. A final `done` event carries `{"total": N}`. Connect with `EventSource` or `fetch`:
  *
  * ```js
- * const es = new EventSource('/v3/ledger-entries?organizationId={id}&format=event-stream', {
+ * const es = new EventSource('/v3/ledger/borrows?organizationId={id}&format=event-stream', {
  * headers: { 'x-api-key': 'cc_...' },
  * });
  * es.addEventListener('entry', (e) => console.log(JSON.parse(e.data)));
  * es.addEventListener('done', (e) => { console.log('total:', JSON.parse(e.data).total); es.close(); });
  * ```
  *
- * Requires org membership or vault curator role (public orgs only). Unified endpoint for transfers, borrows, and repayments.
+ * Requires org membership or vault curator role (public orgs only).
  */
-export const listLedgerEntries = <ThrowOnError extends boolean = false>(options: Options<ListLedgerEntriesData, ThrowOnError>) => (options.client ?? client).get<ListLedgerEntriesResponses, ListLedgerEntriesErrors, ThrowOnError>({
+export const listBorrows = <ThrowOnError extends boolean = false>(options: Options<ListBorrowsData, ThrowOnError>) => (options.client ?? client).get<ListBorrowsResponses, ListBorrowsErrors, ThrowOnError>({
     security: [
         { name: 'x-api-key', type: 'apiKey' },
         { scheme: 'bearer', type: 'http' },
         { scheme: 'bearer', type: 'http' }
     ],
-    url: '/v3/ledger-entries',
+    url: '/v3/ledger/borrows',
+    ...options
+});
+
+/**
+ * List credit facility repayment events
+ *
+ * Get on-chain repayment events for an organization. Each row represents a `RepayPrincipal` or `RepayInterest` event emitted by a SecuredLine credit facility. Filter by `repaymentType` to restrict to one subtype.
+ *
+ * Results are sorted by `occurredAt` (descending — newest first). Ordering is not configurable from the query string.
+ *
+ * Supports three response formats via the `format` query parameter:
+ * - **json** (default) — paginated JSON (default limit 100, max 1000).
+ * - **csv** — streamed CSV file download (up to 1,000,000 rows). Columns: inflow, transaction, type, timestamp, amount, usdValue, tokenAddress, tokenIcon, tokenSymbol.
+ * - **event-stream** — Server-Sent Events stream (up to 1,000,000 rows). Each entry is emitted as a named `entry` event with JSON data. A final `done` event carries `{"total": N}`. Connect with `EventSource` or `fetch`:
+ *
+ * ```js
+ * const es = new EventSource('/v3/ledger/repays?organizationId={id}&format=event-stream', {
+ * headers: { 'x-api-key': 'cc_...' },
+ * });
+ * es.addEventListener('entry', (e) => console.log(JSON.parse(e.data)));
+ * es.addEventListener('done', (e) => { console.log('total:', JSON.parse(e.data).total); es.close(); });
+ * ```
+ *
+ * Requires org membership or vault curator role (public orgs only).
+ */
+export const listRepays = <ThrowOnError extends boolean = false>(options: Options<ListRepaysData, ThrowOnError>) => (options.client ?? client).get<ListRepaysResponses, ListRepaysErrors, ThrowOnError>({
+    security: [
+        { name: 'x-api-key', type: 'apiKey' },
+        { scheme: 'bearer', type: 'http' },
+        { scheme: 'bearer', type: 'http' }
+    ],
+    url: '/v3/ledger/repays',
+    ...options
+});
+
+/**
+ * List individual cashflow transfer events
+ *
+ * Get individual cashflow transfer events for an organization. Each row is a single movement of value (on-chain `Transfer`, off-chain wire/ACH, swap leg, etc.) classified by stage (`external` → `in_transit` → `secured` → `settled`) and direction (inflow / outflow). Set `excludeLinkedTransfers=true` to drop transfers whose tx hash matches a known borrow/repay and avoid double-counting against `/v3/ledger/borrows` and `/v3/ledger/repays`.
+ *
+ * Results are sorted by `occurredAt` (descending — newest first). Ordering is not configurable from the query string.
+ *
+ * Supports three response formats via the `format` query parameter:
+ * - **json** (default) — paginated JSON (default limit 100, max 1000).
+ * - **csv** — streamed CSV file download (up to 1,000,000 rows). Columns: inflow, transaction, type, timestamp, amount, usdValue, tokenAddress, tokenIcon, tokenSymbol.
+ * - **event-stream** — Server-Sent Events stream (up to 1,000,000 rows). Each entry is emitted as a named `entry` event with JSON data. A final `done` event carries `{"total": N}`. Connect with `EventSource` or `fetch`:
+ *
+ * ```js
+ * const es = new EventSource('/v3/ledger/transfers?organizationId={id}&format=event-stream', {
+ * headers: { 'x-api-key': 'cc_...' },
+ * });
+ * es.addEventListener('entry', (e) => console.log(JSON.parse(e.data)));
+ * es.addEventListener('done', (e) => { console.log('total:', JSON.parse(e.data).total); es.close(); });
+ * ```
+ *
+ * Requires org membership or vault curator role (public orgs only).
+ */
+export const listCashflowTransfers = <ThrowOnError extends boolean = false>(options: Options<ListCashflowTransfersData, ThrowOnError>) => (options.client ?? client).get<ListCashflowTransfersResponses, ListCashflowTransfersErrors, ThrowOnError>({
+    security: [
+        { name: 'x-api-key', type: 'apiKey' },
+        { scheme: 'bearer', type: 'http' },
+        { scheme: 'bearer', type: 'http' }
+    ],
+    url: '/v3/ledger/transfers',
+    ...options
+});
+
+/**
+ * List aggregate daily cashflow snapshots
+ *
+ * Get daily aggregate cashflow snapshots reported by an institution (e.g. `self_report`, `visa`) on behalf of an organization. Unlike `/v3/ledger/transfers`, each row is a *period summary* — typically one row per (institution, day, direction) — not an individual transaction. Use this endpoint when you want pre-aggregated totals; use `/v3/ledger/transfers` for line-item activity.
+ *
+ * Results are sorted by `occurredAt` (descending — newest first). Ordering is not configurable from the query string.
+ *
+ * Supports three response formats via the `format` query parameter:
+ * - **json** (default) — paginated JSON (default limit 100, max 1000).
+ * - **csv** — streamed CSV file download (up to 1,000,000 rows). Columns: inflow, transaction, type, timestamp, amount, usdValue, tokenAddress, tokenIcon, tokenSymbol.
+ * - **event-stream** — Server-Sent Events stream (up to 1,000,000 rows). Each entry is emitted as a named `entry` event with JSON data. A final `done` event carries `{"total": N}`. Connect with `EventSource` or `fetch`:
+ *
+ * ```js
+ * const es = new EventSource('/v3/ledger/cumulative-cashflows?organizationId={id}&format=event-stream', {
+ * headers: { 'x-api-key': 'cc_...' },
+ * });
+ * es.addEventListener('entry', (e) => console.log(JSON.parse(e.data)));
+ * es.addEventListener('done', (e) => { console.log('total:', JSON.parse(e.data).total); es.close(); });
+ * ```
+ *
+ * Requires org membership or vault curator role (public orgs only).
+ */
+export const listCumulativeCashflows = <ThrowOnError extends boolean = false>(options: Options<ListCumulativeCashflowsData, ThrowOnError>) => (options.client ?? client).get<ListCumulativeCashflowsResponses, ListCumulativeCashflowsErrors, ThrowOnError>({
+    security: [
+        { name: 'x-api-key', type: 'apiKey' },
+        { scheme: 'bearer', type: 'http' },
+        { scheme: 'bearer', type: 'http' }
+    ],
+    url: '/v3/ledger/cumulative-cashflows',
+    ...options
+});
+
+/**
+ * List point-in-time collateral USD snapshots
+ *
+ * Get daily collateral USD snapshots for an organization. Each row is the total USD value of collateral held on a given calendar day — one row per organization per day. Use this for time-series collateral charts and coverage ratios; combine with `/v3/ledger/borrows` + `/v3/ledger/repays` to compute net leverage over time.
+ *
+ * Results are sorted by `snapshotDate` (descending — newest first). Ordering is not configurable from the query string.
+ *
+ * Supports three response formats via the `format` query parameter:
+ * - **json** (default) — paginated JSON (default limit 100, max 1000).
+ * - **csv** — streamed CSV file download (up to 1,000,000 rows). Columns: snapshotDate, amountUsd, organizationId, organizationName, createdAt.
+ * - **event-stream** — Server-Sent Events stream (up to 1,000,000 rows). Each entry is emitted as a named `entry` event with JSON data. A final `done` event carries `{"total": N}`. Connect with `EventSource` or `fetch`:
+ *
+ * ```js
+ * const es = new EventSource('/v3/ledger/cumulative-collateral?organizationId={id}&format=event-stream', {
+ * headers: { 'x-api-key': 'cc_...' },
+ * });
+ * es.addEventListener('entry', (e) => console.log(JSON.parse(e.data)));
+ * es.addEventListener('done', (e) => { console.log('total:', JSON.parse(e.data).total); es.close(); });
+ * ```
+ *
+ * Requires org membership or vault curator role (public orgs only).
+ */
+export const listCumulativeCollateral = <ThrowOnError extends boolean = false>(options: Options<ListCumulativeCollateralData, ThrowOnError>) => (options.client ?? client).get<ListCumulativeCollateralResponses, ListCumulativeCollateralErrors, ThrowOnError>({
+    security: [
+        { name: 'x-api-key', type: 'apiKey' },
+        { scheme: 'bearer', type: 'http' },
+        { scheme: 'bearer', type: 'http' }
+    ],
+    url: '/v3/ledger/cumulative-collateral',
     ...options
 });
 
 /**
  * Submit self-reported cashflows
  *
- * Submit cashflow items (transactions, daily aggregates, or collateral snapshots) for the authenticated organization. Items flow through the standard capture → normalize pipeline. Transactions and aggregates become ledger entries; collateral snapshots are stored in the dedicated collateral_snapshots table.
+ * Submit cashflow items for the authenticated organization. Each entry in `items` takes one of three shapes, selected by its `type` field:
+ *
+ * - `transaction` — an individual transaction with a precise `datetime` and a required `externalId` for deduplication.
+ * - `aggregate` — a daily total for a `date` (zero allowed for no-activity days).
+ * - `collateral` — a cumulative collateral snapshot for a `date`.
+ *
+ * Items flow through the standard capture → normalize pipeline. Transactions and aggregates become ledger entries; collateral snapshots are stored in the dedicated collateral_snapshots table.
  */
 export const submitSelfReportCashflows = <ThrowOnError extends boolean = false>(options: Options<SubmitSelfReportCashflowsData, ThrowOnError>) => (options.client ?? client).post<SubmitSelfReportCashflowsResponses, SubmitSelfReportCashflowsErrors, ThrowOnError>({
     security: [{ name: 'x-api-key', type: 'apiKey' }],
@@ -719,15 +900,44 @@ export const verifyWalletAttestation = <ThrowOnError extends boolean = false>(op
 });
 
 /**
- * List attested wallets
+ * List the user's wallets (optionally including org multisigs)
  *
- * List all wallet addresses attested by the authenticated user.
+ * List the user's attested EOAs. Pass `?include=multisigs` to also include org-owned multisigs the user has access to.
  */
 export const listAttestedWallets = <ThrowOnError extends boolean = false>(options?: Options<ListAttestedWalletsData, ThrowOnError>) => (options?.client ?? client).get<ListAttestedWalletsResponses, ListAttestedWalletsErrors, ThrowOnError>({
     security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
     url: '/v3/users/me/wallets',
     ...options
 });
+
+/**
+ * Update email subscription preferences for the authenticated user
+ *
+ * Subscribe or unsubscribe in bulk. Each change is identified by (address, networkId, type); `enabled: true` inserts a row, `enabled: false` deletes one. All cells are user-editable; defaults at wallet-create / org-join time are managed server-side.
+ */
+export const updateEmailSubscriptions = <ThrowOnError extends boolean = false>(options: Options<UpdateEmailSubscriptionsData, ThrowOnError>) => (options.client ?? client).put<UpdateEmailSubscriptionsResponses, UpdateEmailSubscriptionsErrors, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }, { scheme: 'bearer', type: 'http' }],
+    url: '/v3/users/me/email-subscriptions',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Redirect to /account (non-destructive)
+ *
+ * Non-destructive: redirects to the /account preferences page where the user can manually unsubscribe. We deliberately do NOT delete the subscription row from a GET handler because email clients (Gmail Smart Linking, link-safety scanners) prefetch URLs in emails — a destructive GET would let those prefetchers silently unsubscribe users. The actual unsubscribe write happens via the RFC 8058 POST endpoint (one-click from Gmail/Yahoo inbox UI) or by the user explicitly unticking a cell on /account.
+ */
+export const unsubscribeViaLink = <ThrowOnError extends boolean = false>(options: Options<UnsubscribeViaLinkData, ThrowOnError>) => (options.client ?? client).get<unknown, unknown, ThrowOnError>({ url: '/email/unsubscribe', ...options });
+
+/**
+ * RFC 8058 one-click unsubscribe (mail-provider POST)
+ *
+ * POST endpoint mail providers hit when the user clicks the inbox "Unsubscribe" button. Same effect as the GET version (delete the row) but returns 200 with no redirect. Per RFC 8058 we accept the token on the querystring and acknowledge the body `List-Unsubscribe=One-Click` parameter.
+ */
+export const unsubscribeViaOneClick = <ThrowOnError extends boolean = false>(options: Options<UnsubscribeViaOneClickData, ThrowOnError>) => (options.client ?? client).post<UnsubscribeViaOneClickResponses, unknown, ThrowOnError>({ url: '/email/unsubscribe', ...options });
 
 /**
  * List org multisig wallets
